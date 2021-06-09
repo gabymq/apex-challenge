@@ -1,7 +1,5 @@
 import { Selector } from 'testcafe';
-import { InformationField } from '../constants/informationField';
-import { BaseUrl, CartsUrl, CheckoutUrlComplete } from '../constants/page';
-import { PaymentMethod } from '../constants/paymentMethod';
+import { BaseUrl } from '../constants/page';
 import { CheckOutPage } from '../page/checkOut.page';
 import { HomePage } from '../page/home.page';
 import { PuppyDetailsPage } from '../page/puppy-details.page';
@@ -22,7 +20,7 @@ fixture`Getting Started`.page`${BaseUrl}`.beforeEach(async t => {
   return t;
 });
 
-test('3 Puppies should appear on Cart Pages', async t => {
+test('Empty Shopping cart', async t => {
   let windowLocation = await getWindowLocation();
 
   await t.expect(windowLocation).eql(BaseUrl);
@@ -43,6 +41,8 @@ test('3 Puppies should appear on Cart Pages', async t => {
   await homePage.clickPuppyDetails(2);
   await puppyDetailsPage.clickAdoptMeButton();
 
-  await shoppingCartPage.clickCompleteAdoptionButton;
+  await shoppingCartPage.clickOnChangeYourMindButton;
+  await t.setNativeDialogHandler(() => true);
+
   windowLocation = await getWindowLocation();
 });
