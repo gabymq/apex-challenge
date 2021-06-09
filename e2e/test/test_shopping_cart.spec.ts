@@ -22,7 +22,7 @@ fixture`Getting Started`.page`${BaseUrl}`.beforeEach(async t => {
   return t;
 });
 
-test('Adopt two puppies', async t => {
+test.only('3 Puppies should appear on Cart Pages', async t => {
   let windowLocation = await getWindowLocation();
 
   await t.expect(windowLocation).eql(BaseUrl);
@@ -37,21 +37,12 @@ test('Adopt two puppies', async t => {
   await homePage.clickPuppyDetails(3);
   await puppyDetailsPage.clickAdoptMeButton();
 
-  await shoppingCartPage.clickCompleteAdoptionButton();
-
-  await checkOutPage.typeInNameField(InformationField.order_name);
-
-  await checkOutPage.typeInAddressField(InformationField.order_address);
-
-  await checkOutPage.typeInEmailField(InformationField.order_email);
-
-  await checkOutPage.clickPayTypeSelect(PaymentMethod.creditCard);
-
-  await checkOutPage.clickPlaceOrderButton();
+  await shoppingCartPage.clickAdoptAnotherPuppyButton();
   windowLocation = await getWindowLocation();
-  await t
-    .expect(shoppingCartPage.homePuppyHeader.innerText)
-    .contains('Thank you for adopting a puppy!');
 
-  await t.expect(windowLocation).eql(BaseUrl);
+  await homePage.clickPuppyDetails(2);
+  await puppyDetailsPage.clickAdoptMeButton();
+
+  await shoppingCartPage.clickCompleteAdoptionButton;
+  windowLocation = await getWindowLocation();
 });

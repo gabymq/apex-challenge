@@ -1,6 +1,6 @@
 import { Selector } from 'testcafe';
 import { InformationField } from '../constants/informationField';
-import { BaseUrl, checkoutUrlComplete } from '../constants/page';
+import { BaseUrl } from '../constants/page';
 import { PaymentMethod } from '../constants/paymentMethod';
 import { CheckOutPage } from '../page/checkOut.page';
 import { HomePage } from '../page/home.page';
@@ -42,5 +42,8 @@ test('Adopt one Puppy', async t => {
   await checkOutPage.clickPayTypeSelect(PaymentMethod.creditCard);
 
   await checkOutPage.clickPlaceOrderButton();
+  await t
+    .expect(shoppingCartPage.homePuppyHeader.innerText)
+    .contains('Thank you for adopting a puppy!');
   await t.expect(await getWindowLocation()).eql(BaseUrl), await t.wait(3000);
 });
