@@ -1,7 +1,5 @@
 import { Selector } from 'testcafe';
-import { InformationField } from '../constants/informationField';
-import { BaseUrl, CartsUrl, CheckoutUrlComplete } from '../constants/page';
-import { PaymentMethod } from '../constants/paymentMethod';
+import { BaseUrl } from '../constants/page';
 import { CheckOutPage } from '../page/checkOut.page';
 import { HomePage } from '../page/home.page';
 import { PuppyDetailsPage } from '../page/puppy-details.page';

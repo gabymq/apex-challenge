@@ -20,7 +20,7 @@ fixture`Getting Started`.page`${BaseUrl}`.beforeEach(async t => {
   return t;
 });
 
-test('Empty Shopping cart', async t => {
+test.only('Empty Shopping cart', async t => {
   let windowLocation = await getWindowLocation();
 
   await t.expect(windowLocation).eql(BaseUrl);
@@ -41,8 +41,14 @@ test('Empty Shopping cart', async t => {
   await homePage.clickPuppyDetails(2);
   await puppyDetailsPage.clickAdoptMeButton();
 
-  await shoppingCartPage.clickOnChangeYourMindButton;
-  await t.setNativeDialogHandler(() => true);
+  await shoppingCartPage.clickChangeYourMindButton();
 
+  await t.setNativeDialogHandler(() => true);
   windowLocation = await getWindowLocation();
+
+  await t
+    .expect(shoppingCartPage.homeEmptyShoppingCart.innerText)
+    .contains('Your car is currently empty');
+
+  await t.expect(windowLocation).eql(BaseUrl);
 });

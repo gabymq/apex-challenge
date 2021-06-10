@@ -10,6 +10,8 @@ export class ShoppingCartPage {
   changeYourMindButton = Selector('[type="submit"][value="Change your mind"]');
 
   homePuppyHeader = Selector('#notice');
+  homeEmptyShoppingCart = Selector('#notice');
+
   async clickCompleteAdoptionButton() {
     return await t.click(this.completeAdoptionButton);
   }
@@ -18,11 +20,15 @@ export class ShoppingCartPage {
     return await t.click(this.adoptAnotherPuppyButton);
   }
 
-  async clickOnChangeYourMindButton() {
+  async clickChangeYourMindButton() {
     return await t.click(this.changeYourMindButton);
   }
 
   async typeTextHomePuppyHeader() {
     return t.expect(this.homePuppyHeader);
+  }
+
+  async typeTextHomeEmptyShoppingCart() {
+    return t.expect(this.homeEmptyShoppingCart);
   }
 }
